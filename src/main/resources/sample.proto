@@ -1,5 +1,359 @@
-package com.urbanairship.sample;
+import time
+import random
+import datetime
+# Create a function with countdown
+def countdown(s):
+    # Calculate the total number of seconds
+    total_seconds = s
+    # While loop that checks if total_seconds reaches zero
+    # If not zero, decrement total time by one second
+    while total_seconds &gt; 0:
+        # Timer represents time left on countdown
+        timer = datetime.timedelta(seconds = total_seconds)
+        # Prints the time left on the timer
+        print(timer, end=&quot;\r&quot;)
+        # Delays the program one second
+        time.sleep(1)
+        # Reduces total time by one second
+        total_seconds -= 1
+   
+# Define the quiz questions
+questions = {
+   &quot;What is the capital of France?&quot;: {
+        &quot;1&quot;: &quot;Paris&quot;,
+        &quot;2&quot;: &quot;London&quot;,
+        &quot;3&quot;: &quot;Berlin&quot;,
+        &quot;4&quot;: &quot;Madrid&quot;
+    },    
+    &quot;What is the currency of Japan?&quot;: {
+        &quot;1&quot;: &quot;Yen&quot;,
+        &quot;2&quot;: &quot;Dollar&quot;,
+        &quot;3&quot;: &quot;Euro&quot;,
+        &quot;4&quot;: &quot;Pound&quot;
+    },
+    &quot;What is the tallest mountain in the world?&quot;: {
+        &quot;1&quot;: &quot;Mount Everest&quot;,
+        &quot;2&quot;: &quot;K2&quot;,
+        &quot;3&quot;: &quot;Kangchenjunga&quot;,
+        &quot;4&quot;: &quot;Lhotse&quot;
+    },
+    &quot;What is the simplest programing language?&quot;:{
 
-message M {
-  optional int32 a = 1;
+        &quot;1&quot;: &quot;python&quot;,
+        &quot;2&quot;: &quot;java&quot;,
+        &quot;3&quot;: &quot;c&quot;,
+        &quot;4&quot;: &quot;ruby&quot;
+    },
+    &quot;What is the largest planet in our solar system?&quot;:{
+        &quot;1&quot;: &quot;Earth&quot;,
+        &quot;2&quot;: &quot;Jupiter&quot;,
+        &quot;3&quot;: &quot;Mars&quot;,
+        &quot;4&quot;: &quot;venus&quot;
+    },
+    &quot;How many elements in the periodic table?&quot;:{
+        &quot;1&quot;: &quot;116&quot;,
+        &quot;2&quot;: &quot;117&quot;,
+        &quot;3&quot;: &quot;118&quot;,
+        &quot;4&quot;: &quot;119&quot;
+    },
+    &quot;Which animal lays the largest eggs?&quot;:{
+        &quot;1&quot;: &quot;whale&quot;,
+        &quot;2&quot;: &quot;crocodile&quot;,
+        &quot;3&quot;: &quot;elephant&quot;,
+        &quot;4&quot;: &quot;ostrich&quot;
+    },
+    &quot;How many bones are in the human body?&quot;:{
+        &quot;1&quot;: &quot;206&quot;,
+        &quot;2&quot;: &quot;207&quot;,
+        &quot;3&quot;: &quot;208&quot;,
+        &quot;4&quot;: &quot;209&quot;
+    },
+    &quot;Which planet in the solar system is the hottest?&quot;:{
+        &quot;1&quot;: &quot;Earth&quot;,
+        &quot;2&quot;: &quot;Mercury&quot;,
+        &quot;3&quot;: &quot;Mars&quot;,
+        &quot;4&quot;: &quot;venus&quot;
+    },
+    &quot;Who discovered india?&quot;:{
+        &quot;1&quot;: &quot;vasco da gama&quot;,
+        &quot;2&quot;: &quot;Fahian&quot;,
+        &quot;3&quot;: &quot;Alberuni&quot;,
+        &quot;4&quot;: &quot;lbn battuta&quot;
+    },
+    &quot;What is the standard time line of india?&quot;:{
+        &quot;1&quot;: &quot;82.5 degree east longitude&quot;,
+        &quot;2&quot;: &quot;82.5 degree north longitude&quot;,
+        &quot;3&quot;: &quot;82.5 degree west longitude&quot;,
+        &quot;4&quot;: &quot;82.5 degree south longitude&quot;
+    },
+    &quot;In which year Arjuna Award was started?&quot;:{
+        &quot;1&quot;: &quot;1947&quot;,
+        &quot;2&quot;: &quot;1961&quot;,
+        &quot;3&quot;: &quot;1949&quot;,
+
+        &quot;4&quot;: &quot;1983&quot;
+    },
+    &quot;How many High courts are present in India at present?&quot;:{
+        &quot;1&quot;: &quot;23 High courts&quot;,
+        &quot;2&quot;: &quot;24 High courts&quot;,
+        &quot;3&quot;: &quot;25 High courts&quot;,
+        &quot;4&quot;: &quot;26 High courts&quot;
+    },
+    &quot;What is the first country in the world to completely ban tobacco?&quot;:{
+        &quot;1&quot;: &quot;Japan&quot;,
+        &quot;2&quot;: &quot;China&quot;,
+        &quot;3&quot;: &quot;America&quot;,
+        &quot;4&quot;: &quot;Bhutan&quot;
+    },
+    &quot;National voters day is celebrated every year on which day?&quot;:{
+        &quot;1&quot;: &quot;24 January&quot;,
+        &quot;2&quot;: &quot;25 January&quot;,
+        &quot;3&quot;: &quot;25 November&quot;,
+        &quot;4&quot;: &quot;26 January&quot;
+    },
+    &quot;Who is the constitutional head of india?&quot;:{
+        &quot;1&quot;: &quot;Prime minister&quot;,
+        &quot;2&quot;: &quot;President&quot;,
+        &quot;3&quot;: &quot;Speaker of the lok sabha&quot;,
+        &quot;4&quot;: &quot;Vice president&quot;
+    },
+    &quot;In which game is the word &#39;Bully&#39; used?&quot;:{
+        &quot;1&quot;: &quot;Cricket&quot;,
+        &quot;2&quot;: &quot;Football&quot;,
+        &quot;3&quot;: &quot;Hockey&quot;,
+        &quot;4&quot;: &quot;Basketball&quot;
+    },
+    &quot;Which indian athlete is called as &#39;Flying Angel&#39;?&quot;:{
+        &quot;1&quot;: &quot;Hima Das&quot;,
+        &quot;2&quot;: &quot;Mirabai Chanu&quot;,
+        &quot;3&quot;: &quot;PT Usha&quot;,
+        &quot;4&quot;: &quot;None of these&quot;
+    },
+    &quot;Which of the following city is Known as the city of Lakes?&quot;:{
+        &quot;1&quot;: &quot;Jaipur&quot;,
+        &quot;2&quot;: &quot;Udaipur&quot;,
+        &quot;3&quot;: &quot;Nainital&quot;,
+        &quot;4&quot;: &quot;Varanasi&quot;
+    },
+    &quot;Who led the Bardoli movement of 1928?&quot;:{
+        &quot;1&quot;: &quot;Mahatma Gandhi&quot;,
+        &quot;2&quot;: &quot;Bal Gangadhar Tilak&quot;,
+        &quot;3&quot;: &quot;Sardar Vallabh Bhai Patel&quot;,
+        &quot;4&quot;: &quot;Pandit Jawaharlal Nehru&quot;
+    },
+    &quot;When was Arya Samaj established?&quot;:{
+
+        &quot;1&quot;: &quot;In 1875 AD&quot;,
+        &quot;2&quot;: &quot;In 1897 AD&quot;,
+        &quot;3&quot;: &quot;In 1901 AD&quot;,
+        &quot;4&quot;: &quot;In 1912 AD&quot;
+    },
+    &quot;Which is the oldest veda among the vedas?&quot;:{
+        &quot;1&quot;: &quot;Rigveda&quot;,
+        &quot;2&quot;: &quot;Samveda&quot;,
+        &quot;3&quot;: &quot;Yajurveda&quot;,
+        &quot;4&quot;: &quot;Atharvaveda&quot;
+    },
+    &quot;Where is the Bhabha Atomic Research Center located ?&quot;:{
+        &quot;1&quot;: &quot;Trombay,Mumbai&quot;,
+        &quot;2&quot;: &quot;New Delhi&quot;,
+        &quot;3&quot;: &quot;Bangalore&quot;,
+        &quot;4&quot;: &quot;Kalkata&quot;
+    },
+    &quot;Who founded the Khalsa Panth?&quot;:{
+        &quot;1&quot;: &quot;Guru Gobind Singh&quot;,
+        &quot;2&quot;: &quot;Guru Nanak Dev&quot;,
+        &quot;3&quot;: &quot;Angad Dev&quot;,
+        &quot;4&quot;: &quot;Guru Ramdas&quot;
+    },
+    &quot;Who was the india&#39;s first I.P.S. officer?&quot;:{
+        &quot;1&quot;: &quot;Sarojini naidu&quot;,
+        &quot;2&quot;: &quot;Anandibai joshi&quot;,
+        &quot;3&quot;: &quot;Anjum ara&quot;,
+        &quot;4&quot;: &quot;Kiran bedi&quot;
+    },
+    &quot;In which game is the word &#39;Chinaman&#39; used?&quot;:{
+        &quot;1&quot;: &quot;Cricket&quot;,
+        &quot;2&quot;: &quot;Hockey&quot;,
+        &quot;3&quot;: &quot;Polo&quot;,
+        &quot;4&quot;: &quot;Kabaddi&quot;
+    },
+    &quot;Oscar award is related to which field?&quot;:{
+        &quot;1&quot;: &quot;Literature&quot;,
+        &quot;2&quot;: &quot;Cinema&quot;,
+        &quot;3&quot;: &quot;Science&quot;,
+        &quot;4&quot;: &quot;Medicine&quot;
+    },
+    &quot;Which of the following is the hardest element?&quot;:{
+        &quot;1&quot;: &quot;Glass&quot;,
+        &quot;2&quot;: &quot;Diamond&quot;,
+        &quot;3&quot;: &quot;Aluminum&quot;,
+        &quot;4&quot;: &quot;Graphite&quot;
+    },
+    &quot;What was the ancient name of patna?&quot;:{
+        &quot;1&quot;: &quot;Pataliputra&quot;,
+        &quot;2&quot;: &quot;Ceylon&quot;,
+        &quot;3&quot;: &quot;Hastinapur&quot;,
+
+        &quot;4&quot;: &quot;Vaishali&quot;
+    },
+    &quot;Which of the following indian state has English as its official language?&quot;:{
+        &quot;1&quot;: &quot;Nagaland&quot;,
+        &quot;2&quot;: &quot;Sikkim&quot;,
+        &quot;3&quot;: &quot;manipur&quot;,
+        &quot;4&quot;: &quot;Kerala&quot;
+    },
+    &quot;What is the height of the geostationary satellite from the earth?&quot;:{
+        &quot;1&quot;: &quot;36000 Kms&quot;,
+        &quot;2&quot;: &quot;32000 Kms&quot;,
+        &quot;3&quot;: &quot;40000 Kms&quot;,
+        &quot;4&quot;: &quot;42000 Kms&quot;
+    },
+    &quot;How many colors are there in the rainbow?&quot;:{
+        &quot;1&quot;: &quot;5&quot;,
+        &quot;2&quot;: &quot;6&quot;,
+        &quot;3&quot;: &quot;7&quot;,
+        &quot;4&quot;: &quot;8&quot;
+    },
+    &quot;What is the frequency of ultrasonic waves?&quot;:{
+        &quot;1&quot;: &quot;less than 20000 Hz&quot;,
+        &quot;2&quot;: &quot;More than 20000 Hz&quot;,
+        &quot;3&quot;: &quot;Between 20-20000 Hz&quot;,
+        &quot;4&quot;: &quot;20 Hz&quot;
+    },
+    &quot;Durand Cup is related to which game?&quot;:{
+        &quot;1&quot;: &quot;Hockey&quot;,
+        &quot;2&quot;: &quot;Cricket&quot;,
+        &quot;3&quot;: &quot;Football&quot;,
+        &quot;4&quot;: &quot;Judo&quot;
+     },
+    &quot;Who was the first law minister of india?&quot;:{
+        &quot;1&quot;: &quot;Dr.Sarvepalli Radhakrishna&quot;,
+        &quot;2&quot;: &quot;Dr.Bhimrao Ambedkar&quot;,
+        &quot;3&quot;: &quot;Sardar Vallabhbhai patel&quot;,
+        &quot;4&quot;: &quot;Abdul kalam azad&quot;
+    },
+    &quot;In which city is the Salarjung Museum located?&quot;:{
+        &quot;1&quot;: &quot;Hyderabad&quot;,
+        &quot;2&quot;: &quot;Jaipur&quot;,
+        &quot;3&quot;: &quot;Bangalore&quot;,
+        &quot;4&quot;: &quot;Srirangapatna&quot;
+    },
+    &quot;Which is the longest river in the world?&quot;:{
+        &quot;1&quot;: &quot;Amazon River&quot;,
+        &quot;2&quot;: &quot;Nile River&quot;,
+        &quot;3&quot;: &quot;Mississippi River&quot;,
+        &quot;4&quot;: &quot;Yangtze River&quot;
+    },
+    &quot;Which minerals controls the heart beat?&quot;:{
+
+        &quot;1&quot;: &quot;Potassium&quot;,
+        &quot;2&quot;: &quot;Zinc&quot;,
+        &quot;3&quot;: &quot;Copper&quot;,
+        &quot;4&quot;: &quot;Aluminum&quot;
+    },
+    &quot;Which is the largest living bird in the world?&quot;:{
+        &quot;1&quot;: &quot;Ostrich&quot;,
+        &quot;2&quot;: &quot;Hummingbird&quot;,
+        &quot;3&quot;: &quot;Eagle&quot;,
+        &quot;4&quot;: &quot;Vulture&quot;
+    },
+    &quot;Which animal was first domesticated by man?&quot;:{
+        &quot;1&quot;: &quot;Goat&quot;,
+        &quot;2&quot;: &quot;Cat&quot;,
+        &quot;3&quot;: &quot;Horse&quot;,
+        &quot;4&quot;: &quot;Dog&quot;
+    },
+    &quot;How does the sky appear in space to an Astronaut?&quot;:{
+        &quot;1&quot;: &quot;Blue&quot;,
+        &quot;2&quot;: &quot;White&quot;,
+        &quot;3&quot;: &quot;Black&quot;,
+        &quot;4&quot;: &quot;Brown&quot;
+    },
+    &quot;What is the full form of ATM?&quot;:{
+        &quot;1&quot;: &quot;Automatic Teller Machine&quot;,
+        &quot;2&quot;: &quot;Automated Teller machine&quot;,
+        &quot;3&quot;: &quot;All Time Money&quot;,
+        &quot;4&quot;: &quot;None of these&quot;
+    },
+    &quot;What is the maximum number of seats in the Lok Sabha in india?&quot;:{
+        &quot;1&quot;: &quot;78&quot;,
+        &quot;2&quot;: &quot;80&quot;,
+        &quot;3&quot;: &quot;82&quot;,
+        &quot;4&quot;: &quot;95&quot;
+    },
+    &quot;Where was lord mahavir jain born?&quot;:{
+        &quot;1&quot;: &quot;Vaishali&quot;,
+        &quot;2&quot;: &quot;Pawapuri&quot;,
+        &quot;3&quot;: &quot;lumbini&quot;,
+        &quot;4&quot;: &quot;Rajgriha&quot;
+    },
+    &quot;Who discovered the proton?&quot;:{
+        &quot;1&quot;: &quot;Rutherford&quot;,
+        &quot;2&quot;: &quot;Chadwick&quot;,
+        &quot;3&quot;: &quot;Goldstein&quot;,
+        &quot;4&quot;: &quot;Albert Einstein&quot;
+    },
+    &quot;Where was india&#39;s first nuclear power house established?&quot;:{
+        &quot;1&quot;: &quot;Tarapur&quot;,
+        &quot;2&quot;: &quot;Udaipur&quot;,
+        &quot;3&quot;: &quot;Hyderabad&quot;,
+
+        &quot;4&quot;: &quot;Ranchi&quot;
+    },
+    &quot;Who founded Shantiniketan?&quot;:{
+        &quot;1&quot;: &quot;Kalidas&quot;,
+        &quot;2&quot;: &quot;Swami Vivekananda&quot;,
+        &quot;3&quot;: &quot;Subhas Chandra Bose&quot;,
+        &quot;4&quot;: &quot;Rabindranath Tagore&quot;
+    },
+    &quot;When did Alexander attack india?&quot;:{
+        &quot;1&quot;: &quot;326 Bc&quot;,
+        &quot;2&quot;: &quot;300 Bc&quot;,
+        &quot;3&quot;: &quot;483 Bc&quot;,
+        &quot;4&quot;: &quot;563 Bc&quot;
+    },
+    &quot;The average amount of salt in sea water is?&quot;:{
+        &quot;1&quot;: &quot;3%&quot;,
+        &quot;2&quot;: &quot;3.50%&quot;,
+        &quot;3&quot;: &quot;4%&quot;,
+        &quot;4&quot;: &quot;4.50%&quot;
+    },
+    &quot;Which is the longest national highway of india?&quot;:{
+        &quot;1&quot;: &quot;NH -7&quot;,
+        &quot;2&quot;: &quot;NH -44&quot;,
+        &quot;3&quot;: &quot;NH -1&quot;,
+        &quot;4&quot;: &quot;NH -32&quot;
+    },
 }
+# Set the time limit for each question (in seconds)
+time_limit = 30
+# Define a function to ask a question and check the answer
+def ask_question(question, options, answer):
+    print(question)
+    for option, value in options.items():
+        print(f&quot;{option}. {value}&quot;)
+    user_answer = &quot;&quot;
+    start_time = time.time()
+    while user_answer == &quot;&quot; and time.time() - start_time &lt; time_limit:
+        countdown(time_limit - (time.time() - start_time))
+        user_answer = input(&quot;Your answer: &quot;)
+    if user_answer.lower() == answer.lower():
+        return True
+    else:
+        return False
+   
+# Shuffle the quiz questions
+questions_list = list(questions.items())
+random.shuffle(questions_list)
+
+score = 0
+for i, (question, options) in enumerate(questions_list):
+    print(f&quot;\nQuestion {i+1}:&quot;)
+    if ask_question(question, options, questions[question][&#39;1&#39;]):
+        score += 1
+        print(&quot;Correct!&quot;)
+    else:
+        print(&quot;Incorrect.&quot;)
+# Display the final score
+print(f&quot;\nYour score is {score}/{len(questions)}&quot;)
